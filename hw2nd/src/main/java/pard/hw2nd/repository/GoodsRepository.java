@@ -14,10 +14,9 @@ public class GoodsRepository {
 
     //create
     public Goods save(Goods goods) {
-        Integer index = goodsList.size() + 1;
+        int index = goodsList.size() + 1;
         goods.setId(index);
         goodsList.put(index, goods);
-        System.out.println();
 
         return goods;
     }

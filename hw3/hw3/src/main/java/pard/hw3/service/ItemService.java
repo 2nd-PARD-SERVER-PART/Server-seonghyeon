@@ -91,9 +91,6 @@ public class ItemService {
         int itemPrice = dto.getItemPrice();
 
         try {
-            if (itemRepository.existsByItemName(itemName)) {
-                return ResponseDto.setFailed("이미 존재하는 상품명입니다.");
-            }
             if (itemPrice >= 50000) {
                 return ResponseDto.setFailed("상품 가격은 50,000 이하여야 합니다.");
             }

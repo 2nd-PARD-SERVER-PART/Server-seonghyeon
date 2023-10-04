@@ -2,7 +2,6 @@
 <details>
 <summary>HW2</summary>
   
-## HW2
 ### [CREATE]
 <img width="245" alt="add1" src="https://github.com/2nd-PARD-SERVER-PART/Server-seonghyeon/assets/141024382/34d14093-342f-4506-83ff-0ddfee861a7a">
 <img width="259" alt="add2" src="https://github.com/2nd-PARD-SERVER-PART/Server-seonghyeon/assets/141024382/6a4e91a0-584f-4a12-84ad-5867caae01a5">

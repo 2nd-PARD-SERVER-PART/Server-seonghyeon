@@ -1,5 +1,6 @@
 # Server-seonghyeon
-
+<details>
+<summary>HW2</summary>
 ## HW2
 ### [CREATE]
 <img width="245" alt="add1" src="https://github.com/2nd-PARD-SERVER-PART/Server-seonghyeon/assets/141024382/34d14093-342f-4506-83ff-0ddfee861a7a">
@@ -21,3 +22,4 @@
 ### [DELETE]
 <img width="277" alt="delete1" src="https://github.com/2nd-PARD-SERVER-PART/Server-seonghyeon/assets/141024382/6eaa9bec-9463-48d5-8458-5f8eb9c93f43">
 <img width="278" alt="delete2" src="https://github.com/2nd-PARD-SERVER-PART/Server-seonghyeon/assets/141024382/37cb3156-1665-419c-b824-d5221a138e0c">
+</details>

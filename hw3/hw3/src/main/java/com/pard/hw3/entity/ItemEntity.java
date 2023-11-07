@@ -12,7 +12,7 @@ import com.pard.hw3.dto.ItemDto;
 
 import java.sql.Timestamp;
 
-@Entity(name = "item")
+@Entity(name = "item") //item 이라는 테이블
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

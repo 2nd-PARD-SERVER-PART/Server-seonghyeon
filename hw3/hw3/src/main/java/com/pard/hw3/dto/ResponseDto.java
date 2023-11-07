@@ -8,7 +8,7 @@ import lombok.Data;
 public class ResponseDto<D> {
     private boolean result;
     private String message;
-    private D data;
+    private D data; //제네릭 타입
 
     public static <D> ResponseDto<D> setSuccess(String message, D data) {
         return ResponseDto.set(true, message, data);

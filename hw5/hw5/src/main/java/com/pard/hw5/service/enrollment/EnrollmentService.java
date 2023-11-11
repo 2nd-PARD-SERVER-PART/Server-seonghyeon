@@ -1,6 +1,8 @@
 package com.pard.hw5.service.enrollment;
 
 import com.pard.hw5.dto.enrollment.request.EnrollmentCreateRequest;
+import com.pard.hw5.dto.enrollment.response.EnrollmentResponse;
+import com.pard.hw5.dto.enrollment.response.EnrollmentStudentResponse;
 import com.pard.hw5.entity.enrollment.Enrollment;
 import com.pard.hw5.entity.lecture.Lecture;
 import com.pard.hw5.entity.student.Student;
@@ -13,6 +15,9 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Data
@@ -27,6 +32,7 @@ public class EnrollmentService {
         this.enrollmentRepository = enrollmentRepository;
     }
 
+    //강의 듣는 학생 추가
     @Transactional
     public Enrollment addEnrollment(EnrollmentCreateRequest request) {
         Student student = studentRepository.findById(request.getStudentId())
@@ -40,5 +46,16 @@ public class EnrollmentService {
         enrollment.setLectureName(request.getLectureName());
 
         return enrollmentRepository.save(enrollment);
+    }
+
+    public EnrollmentStudentResponse findStudent(Long student_id) {
+        List<Enrollment> enrollments=enrollmentRepository.findByStudentId(student_id);
+        List<Lecture> lectures = new ArrayList<>();
+        for (int i = 0; i < enrollments.size(); i++) {
+            lectures.add(enrollments.get(i).getLecture());
+        }
+        EnrollmentStudentResponse response = new EnrollmentStudentResponse();
+        response.setLectures(lectures);
+        return response;
     }
 }

@@ -1,5 +1,6 @@
 package com.pard.hw5.entity.lecture;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pard.hw5.entity.enrollment.Enrollment;
 import com.pard.hw5.entity.student.Student;
 import jakarta.persistence.*;
@@ -24,6 +25,7 @@ public class Lecture {
     private Integer time; // 시간
     private String book; // 교재
     @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Enrollment> enrollments = new ArrayList<>(); // 수강학생
 
     @Builder

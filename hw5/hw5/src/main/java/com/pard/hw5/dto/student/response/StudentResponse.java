@@ -25,11 +25,10 @@ public class StudentResponse {
         this.birth = student.getBirth();
         this.phoneNumber = student.getPhoneNumber();
 
-        if (student.getEnrollments() != null) {
-            this.enrollments = student.getEnrollments().stream()
-                    .map(EnrollmentStudentResponse::new)
-                    .collect(Collectors.toList());
-        }
+//        if (student.getEnrollments() != null) {
+//            this.enrollments = student.getEnrollments().stream()
+//                    .map(EnrollmentStudentResponse::new)
+//                    .collect(Collectors.toList());
+//        }
     }
-
 }

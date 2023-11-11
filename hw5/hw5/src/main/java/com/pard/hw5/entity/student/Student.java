@@ -1,5 +1,6 @@
 package com.pard.hw5.entity.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pard.hw5.entity.enrollment.Enrollment;
 import com.pard.hw5.entity.lecture.Lecture;
 import jakarta.persistence.*;
@@ -29,6 +30,7 @@ public class Student {
     CascadeType.PERSIST: Student 엔티티의 내용이 변경될 때
     */
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Enrollment> enrollments = new ArrayList<>(); // 수강 과목
 //    private Integer lectureDay; // 수강 요일
 //    private Integer classNum; // 분반

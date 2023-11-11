@@ -13,18 +13,18 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String lectureName;
+    private String lectureName; // 강의명
 
     /*
     ManyToOne: 여러개의 Enrollment 엔티티가 하나의 Student 엔티티에 속함
     fetch = FetchType.LAZY: 학생정보를 실제로 사용할 때 DB에서 데이터를 들고옴
     fetch = FetchTYpe.EAGER: 학생정보를 바로 로딩함
     */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "lecture_id")
     private Lecture lecture;
 }

@@ -4,6 +4,7 @@ import com.pard.hw5.dto.student.request.StudentCreateRequest;
 import com.pard.hw5.dto.student.request.StudentUpdateRequest;
 import com.pard.hw5.entity.student.Student;
 import com.pard.hw5.repository.student.StudentRepository;
+import com.pard.hw5.service.enrollment.EnrollmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor // 뭐였지,,,
 public class StudentService {
     private final StudentRepository studentRepository;
+    private final EnrollmentService enrollmentService;
 
     public Student addStudent(StudentCreateRequest request) {
         return studentRepository.save(request.toEntity());

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class EnrollmentCreateRequest {
+    private String lectureName; // 강의 이름이 있어야 할까?
     private Long studentId;
     private Long lectureId;
-    private String lectureName;
 }

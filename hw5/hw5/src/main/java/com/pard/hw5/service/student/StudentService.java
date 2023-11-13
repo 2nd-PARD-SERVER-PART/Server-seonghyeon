@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor // 뭐였지,,,
 public class StudentService {
     private final StudentRepository studentRepository;
-    private final EnrollmentService enrollmentService;
 
     public Student addStudent(StudentCreateRequest request) {
         return studentRepository.save(request.toEntity());

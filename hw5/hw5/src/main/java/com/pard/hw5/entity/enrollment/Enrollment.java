@@ -13,8 +13,7 @@ public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String lectureName; // 강의명
-
+    
     /*
     ManyToOne: 여러개의 Enrollment 엔티티가 하나의 Student 엔티티에 속함
     fetch = FetchType.LAZY: 학생정보를 실제로 사용할 때 DB에서 데이터를 들고옴

@@ -32,8 +32,6 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Enrollment> enrollments = new ArrayList<>(); // 수강 과목
-//    private Integer lectureDay; // 수강 요일
-//    private Integer classNum; // 분반
 //    private boolean isDrivingCar; // 학원차 탑승 여부
 //    private Integer carNum; // 학원차 호수
 //    private String hopeSchool; // 희망 학교

@@ -43,11 +43,12 @@ public class EnrollmentService {
         Enrollment enrollment = new Enrollment();
         enrollment.setStudent(student);
         enrollment.setLecture(lecture);
-        enrollment.setLectureName(request.getLectureName());
+//        enrollment.setLectureName(request.getLectureName());
 
         return enrollmentRepository.save(enrollment);
     }
 
+    @Transactional
     public EnrollmentStudentResponse findStudent(Long student_id) {
         List<Enrollment> enrollments=enrollmentRepository.findByStudentId(student_id);
         List<Lecture> lectures = new ArrayList<>();

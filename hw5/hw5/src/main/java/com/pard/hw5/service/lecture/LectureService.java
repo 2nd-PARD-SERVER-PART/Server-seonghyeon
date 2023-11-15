@@ -1,42 +1,80 @@
 package com.pard.hw5.service.lecture;
 
-import com.pard.hw5.dto.lecture.request.LectureCreateRequest;
-import com.pard.hw5.dto.lecture.request.LectureUpdateRequest;
-import com.pard.hw5.entity.lecture.Lecture;
-import com.pard.hw5.repository.lecture.LectureRepository;
+import com.yangyoung.server.dto.lecture.request.LectureInfoCreateRequest;
+import com.yangyoung.server.dto.lecture.request.LectureInfoUpdateRequest;
+import com.yangyoung.server.dto.lecture.response.LectureInfoResponse;
+import com.yangyoung.server.dto.lecture.response.LectureResponse;
+import com.yangyoung.server.dto.student.response.StudentInfoResponse;
+import com.yangyoung.server.dto.student.response.StudentResponse;
+import com.yangyoung.server.entity.enrollment.Enrollment;
+import com.yangyoung.server.entity.lecture.Lecture;
+import com.yangyoung.server.entity.student.Student;
+import com.yangyoung.server.repository.Enrollment.EnrollmentRepository;
+import com.yangyoung.server.repository.lecture.LectureRepository;
+import jakarta.transaction.Transactional;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class LectureService {
     private final LectureRepository lectureRepository;
+    private final EnrollmentRepository enrollmentRepository;
 
-    public Lecture addLecture(LectureCreateRequest request) {
+    @Transactional
+    public Lecture createLecture(LectureInfoCreateRequest request) {
         return lectureRepository.save(request.toEntity());
     }
 
-    public List<Lecture> findAll() {
+    @Transactional
+    public List<Lecture> findAllLectures() {
         return lectureRepository.findAll();
     }
 
-    public Lecture findById(Long lectureId) {
-        return lectureRepository.findById(lectureId)
-                .orElseThrow(() -> new IllegalArgumentException("강의가 존재하지 않습니다"));
+    @Transactional
+    public LectureResponse findLecturesForStudent(Long lecture_id) {
+        Lecture lecture = lectureRepository.findById(lecture_id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강의입니다."));
+        List<StudentInfoResponse> students = new ArrayList<>();
+        List<Enrollment> enrollments = enrollmentRepository.findByLectureId(lecture_id);
+        for (int i = 0; i < enrollments.size(); i++) {
+            Student tempN = enrollments.get(i).getStudent();
+            StudentInfoResponse tempS = new StudentInfoResponse(tempN.getId(), tempN.getName(), tempN.getGender(),
+                    tempN.getGrade(), tempN.getBirth(), tempN.getPhoneNumber());
+            students.add(tempS);
+        }
+
+        LectureResponse response = new LectureResponse(lecture.getId(), lecture.getName(), lecture.getProf()
+                , lecture.getType(), lecture.getLecture_condition(), lecture.getTime(), lecture.getBook(), students);
+
+        return response;
     }
 
-    public Lecture updateLecture(Long lectureId, LectureUpdateRequest request) {
-        Lecture lecture = lectureRepository.findById(lectureId)
-                .orElseThrow(() -> new IllegalArgumentException("강의가 존재하지 않습니다"));
+    @Transactional
+    public Lecture findLecture(Long lectureId) {
+        return lectureRepository.findById(lectureId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강좌입니다."));
+    }
 
-        lecture.update(request.getName(), request.getRoom(), request.getProf(), request.getType(), request.getTime(), request.getBook());
+    @Transactional
+    public Lecture updateLecture(Long lectureId, LectureInfoUpdateRequest request) {
+        Lecture lecture = lectureRepository.findById(lectureId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강좌입니다."));
+
+        lecture.update(request.getName(), request.getProf(), request.getType(),
+                request.getCondition(), request.getTime(), request.getBook());
 
         return lectureRepository.save(lecture);
     }
 
+    @Transactional
     public void deleteLecture(Long lectureId) {
         lectureRepository.deleteById(lectureId);
     }
+
+
 }

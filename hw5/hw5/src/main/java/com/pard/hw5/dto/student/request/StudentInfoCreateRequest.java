@@ -1,17 +1,18 @@
 package com.pard.hw5.dto.student.request;
 
-import com.pard.hw5.entity.student.Student;
+import com.yangyoung.server.entity.student.Student;
 import lombok.Data;
+import lombok.Getter;
 
+@Getter
 @Data
-public class StudentCreateRequest {
+public class StudentInfoCreateRequest {
     private String name;
     private Integer gender;
     private Integer grade;
     private String birth;
     private String phoneNumber;
 
-    // builder -> 생성자 순서 상관 X
     public Student toEntity() {
         return Student.builder()
                 .name(name)
@@ -20,7 +21,6 @@ public class StudentCreateRequest {
                 .birth(birth)
                 .phoneNumber(phoneNumber)
                 .build();
-
     }
-
 }
+
